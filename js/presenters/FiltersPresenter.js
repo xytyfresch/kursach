@@ -1,8 +1,9 @@
 export default class FiltersPresenter {
-  constructor(model, view, onFilterChangeCallback) {
+  constructor(model, view, onFilterChangeCallback, coverageData) {
     this.model = model;
     this.view = view;
     this.onFilterChange = onFilterChangeCallback; // Callback для обновления таблицы
+    this.coverageData = coverageData; // Данные для фильтрации
   }
 
   initialize() {
@@ -13,9 +14,28 @@ export default class FiltersPresenter {
   applyFilters(filters) {
     this.model.setFilters(filters);
 
+    const filteredData = this.filterData(filters);
+
     if (this.onFilterChange) {
-      const currentFilters = this.model.getFilters();
-      this.onFilterChange(currentFilters);
+      this.onFilterChange(filteredData);
     }
+  }
+
+  filterData(filters) {
+    const { minCoverage, startDate, endDate } = filters;
+
+    return this.coverageData.filter((item) => {
+      const uploadTime = new Date(item.uploadTime);
+      const withinCoverage =
+        item.lines >= minCoverage &&
+        item.functions >= minCoverage &&
+        item.branches >= minCoverage &&
+        item.statements >= minCoverage;
+      const withinDateRange =
+        (!startDate || uploadTime >= new Date(startDate)) &&
+        (!endDate || uploadTime <= new Date(endDate));
+
+      return withinCoverage && withinDateRange;
+    });
   }
 }
