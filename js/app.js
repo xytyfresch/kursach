@@ -1,3 +1,8 @@
+import {
+  fetchCoverageDetails,
+  fetchInitialCoverageData,
+} from "../js/api/ApiService.js";
+
 import UploadModel from "./models/UploadModel.js";
 import UploadView from "./views/UploadView.js";
 import UploadPresenter from "./presenters/UploadPresenter.js";
@@ -20,15 +25,8 @@ import ModalPresenter from "./presenters/ModalPresenter.js";
 import HeaderPresenter from "./presenters/HeaderPresenter.js";
 import FooterPresenter from "./presenters/FooterPresenter.js";
 
-import {
-  fetchCoverageDetails,
-  fetchInitialCoverageData,
-} from "../js/api/ApiService.js";
-
 const coverageData = await fetchCoverageDetails();
-
 const initialCoverageData = await fetchInitialCoverageData();
-console.log(initialCoverageData);
 
 // Инициализация Header
 const headerPresenter = new HeaderPresenter();
