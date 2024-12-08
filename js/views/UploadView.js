@@ -5,23 +5,34 @@ export default class UploadView {
 
   render() {
     this.container.innerHTML = `
-        <h2>Upload Test Coverage Report</h2>
-        <form id="upload-form">
-          <input type="file" id="coverage-file" accept=".json" />
-          <button type="submit">Upload</button>
-        </form>
-      `;
-    this.uploadForm = document.getElementById("upload-form");
-    this.fileInput = document.getElementById("coverage-file");
+      <h2>Upload File</h2>
+      <form id="file-upload-form">
+        <input type="file" id="file-input" accept="application/json" />
+        <button type="submit">Upload</button>
+      </form>
+    `;
   }
 
   bindFileUpload(handler) {
-    this.uploadForm.addEventListener("submit", (event) => {
+    const form = document.getElementById("file-upload-form");
+    const fileInput = document.getElementById("file-input");
+
+    form.addEventListener("submit", (event) => {
       event.preventDefault();
-      const file = this.fileInput.files[0];
+      const file = fileInput.files[0];
       if (file) {
-        handler(file);
-        this.fileInput.value = ""; // Сброс input после загрузки
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const parsedData = JSON.parse(reader.result);
+            handler(parsedData); // Передаем данные в Presenter
+          } catch (error) {
+            console.error("Invalid JSON file:", error);
+          }
+        };
+        reader.readAsText(file);
+      } else {
+        console.error("No file selected.");
       }
     });
   }

@@ -1,4 +1,4 @@
-const BASE_URL = "https://6721179d98bbb4d93ca76b6f.mockapi.io/api/todo-list";
+export const BASE_URL = "https://6721179d98bbb4d93ca76b6f.mockapi.io/api/todo-list";
 
 export async function fetchCoverageDetails() {
   try {

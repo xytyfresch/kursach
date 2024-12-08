@@ -1,17 +1,21 @@
+import { BASE_URL } from "../api/ApiService.js";
 export default class UploadModel {
-    constructor() {
-      this.files = [];
-    }
-  
-    addFile(file) {
-      const newFile = {
-        name: file.name,
-        size: file.size,
-        type: file.type,
-        uploadTime: new Date().toISOString(),
-      };
-      this.files.push(newFile);
-      return newFile;
+  async addFile(fileContent) {
+    try {
+      const response = await fetch(`${BASE_URL}/coverage-details`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(fileContent),
+      });
+      if (!response.ok) {
+        throw new Error(`Failed to upload file: ${response.status}`);
+      }
+      return await response.json(); // Возвращаем добавленный файл
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      return null;
     }
   }
-  
+}
