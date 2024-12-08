@@ -33,16 +33,16 @@ export default class FiltersView {
   }
 
   _attachEvents() {
-    const form = document.getElementById("filter-form");
+    const form = this.container.querySelector("#filter-form");
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
 
       if (this.onFilterSubmit) {
         const minCoverage =
-          parseInt(document.getElementById("min-coverage").value, 10) || 0;
-        const startDate = document.getElementById("start-date").value;
-        const endDate = document.getElementById("end-date").value;
+          parseInt(this.container.querySelector("#min-coverage").value, 10) || 0;
+        const startDate = this.container.querySelector("#start-date").value;
+        const endDate = this.container.querySelector("#end-date").value;
 
         this.onFilterSubmit({ minCoverage, startDate, endDate });
       }

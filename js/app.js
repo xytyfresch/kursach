@@ -19,6 +19,17 @@ import ModalModel from "./models/ModalModel.js";
 import ModalView from "./views/ModalView.js";
 import ModalPresenter from "./presenters/ModalPresenter.js";
 
+import HeaderPresenter from "./presenters/HeaderPresenter.js";
+import FooterPresenter from "./presenters/FooterPresenter.js";
+
+// Инициализация Header
+const headerPresenter = new HeaderPresenter();
+headerPresenter.initialize();
+
+// Инициализация Footer
+const footerPresenter = new FooterPresenter();
+footerPresenter.initialize();
+
 // --- Coverage Summary ---
 const coverageSummaryModel = new CoverageSummaryModel();
 const coverageSummaryView = new CoverageSummaryView();

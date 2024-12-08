@@ -1,12 +1,30 @@
 export default class CoverageDetailsView {
   constructor() {
-    this.tableBody = document.getElementById("coverage-data");
+    this.container = document.getElementById("coverage-table");
   }
 
   render(data, onRowClick) {
-    this.tableBody.innerHTML = ""; // Очищаем таблицу перед перерисовкой
+    // Генерация всей структуры таблицы
+    this.container.innerHTML = `
+      <h2>Coverage Details</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>File</th>
+            <th>Lines</th>
+            <th>Functions</th>
+            <th>Branches</th>
+            <th>Statements</th>
+          </tr>
+        </thead>
+        <tbody id="coverage-data"></tbody>
+      </table>
+    `;
 
-    data.forEach((item, index) => {
+    const tableBody = this.container.querySelector("#coverage-data");
+
+    // Наполнение строки данными
+    data.forEach((item) => {
       const row = document.createElement("tr");
       row.innerHTML = `
           <td>${item.file}</td>
@@ -16,7 +34,7 @@ export default class CoverageDetailsView {
           <td>${item.statements}%</td>
         `;
       row.addEventListener("click", () => onRowClick(item)); // Обработка клика по строке
-      this.tableBody.appendChild(row);
+      tableBody.appendChild(row);
     });
   }
 }

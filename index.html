@@ -7,52 +7,15 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <header>
-      <h1>Анализ покрытия автотестами</h1>
-    </header>
+    <header id="app-header"></header>
     <main>
-      <!-- Удаляем форму из index.html -->
       <section id="file-upload"></section>
-
-      <!-- Визуализация данных покрытия -->
       <section id="coverage-summary"></section>
-
-      <!-- Фильтры -->
       <section id="filters-container"></section>
-
-      <!-- Таблица покрытия -->
-      <section id="coverage-table">
-        <h2>Coverage Details</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>File</th>
-              <th>Lines</th>
-              <th>Functions</th>
-              <th>Branches</th>
-              <th>Statements</th>
-            </tr>
-          </thead>
-          <tbody id="coverage-data">
-            <!-- Данные будут добавляться динамически -->
-          </tbody>
-        </table>
-      </section>
-
-      <!-- Модальное окно для подробной информации -->
-      <div id="file-details-modal" class="modal hidden">
-        <div class="modal-content">
-          <span class="close-btn" id="close-modal">&times;</span>
-          <h2>File Details</h2>
-          <div id="file-details">
-            <!-- Детальная информация о файле будет добавлена динамически -->
-          </div>
-        </div>
-      </div>
+      <section id="coverage-table"></section>
+      <section id="file-details-modal"></section>
     </main>
-    <footer>
-      <p>© 2024 Test Coverage Analysis Tool - Kozlov Ilia</p>
-    </footer>
+    <footer id="app-footer"></footer>
     <script src="js/app.js" type="module"></script>
   </body>
 </html>
