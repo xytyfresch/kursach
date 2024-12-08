@@ -1,23 +1,23 @@
 /* Основной стиль */
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   line-height: 1.6;
   margin: 0;
   padding: 0;
-  background-color: #f9f9f9;
+  background-color: #f5f7fa;
   color: #333;
 }
 
 header {
   background: #333;
   color: #fff;
-  padding: 1em 0;
+  padding: 1em;
   text-align: center;
 }
 
 header h1 {
   margin: 0;
-  font-size: 1.8em;
+  font-size: 2em;
 }
 
 main {
@@ -28,23 +28,41 @@ main {
 
 section {
   margin-bottom: 2em;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1em;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 1.8em;
   margin-bottom: 0.5em;
 }
 
 form {
   display: flex;
+  flex-wrap: wrap;
   gap: 1em;
   align-items: center;
 }
 
 form input,
 form button {
-  padding: 0.5em;
+  padding: 0.8em;
   font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+form button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+form button:hover {
+  background-color: #0056b3;
 }
 
 table {
@@ -61,7 +79,7 @@ td {
 
 th,
 td {
-  padding: 0.5em;
+  padding: 0.8em;
   text-align: left;
 }
 
@@ -83,12 +101,14 @@ th {
 
 .stats-bar progress {
   flex: 1;
-  margin-right: 1em;
+  height: 1em;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .stats-bar span {
   font-weight: bold;
-  color: #333;
+  margin-left: 1em;
 }
 
 /* Подвал */
@@ -101,43 +121,16 @@ footer {
 }
 
 /* Секция фильтров */
-#filters {
-  margin-bottom: 2em;
-}
-
-#filters form {
+#filters-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 1em;
-  align-items: center;
 }
 
-#filters input {
-  width: 60px;
-  padding: 0.5em;
-}
-
-#filters button {
-  padding: 0.5em 1em;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 1em;
-  border-radius: 3px;
-}
-
-#filters button:hover {
-  background-color: #0056b3;
-}
-
-#filters input[type="datetime-local"] {
-  padding: 0.5em;
-  font-size: 1em;
-  width: 200px;
-}
-
-#filters label {
-  font-weight: bold;
+#filters-container input,
+#filters-container button {
+  flex: 1;
+  min-width: 150px;
 }
 
 /* Модальное окно */
@@ -161,9 +154,9 @@ footer {
 .modal-content {
   background: #fff;
   padding: 2em;
-  border-radius: 8px;
-  width: 80%;
-  max-width: 600px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   position: relative;
 }
@@ -173,7 +166,6 @@ footer {
   top: 10px;
   right: 15px;
   font-size: 1.5em;
-  font-weight: bold;
   color: #333;
   cursor: pointer;
 }
@@ -182,34 +174,56 @@ footer {
   color: #ff0000;
 }
 
-/* Анимация появления модального окна */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-}
-
-/* Состояние для отображения анимации */
+/* Анимация модального окна */
 .modal.show {
   animation: fadeIn 0.3s ease-out forwards;
 }
 
 .modal.hide {
   animation: fadeOut 0.3s ease-in forwards;
+}
+
+/* Адаптивная верстка */
+@media (max-width: 768px) {
+  body {
+    font-size: 90%;
+  }
+
+  header h1 {
+    font-size: 1.5em;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  form input,
+  form button {
+    width: 80%;
+  }
+
+  table th,
+  table td {
+    font-size: 0.9em;
+  }
+
+  .modal-content {
+    padding: 1.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.4em;
+  }
+
+  table th,
+  table td {
+    font-size: 0.8em;
+  }
+
+  .stats-bar label {
+    width: auto;
+    margin-right: 0.5em;
+  }
 }

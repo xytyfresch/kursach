@@ -1,6 +1,8 @@
 export default class ModalView {
   constructor() {
     this.container = document.getElementById("file-details-modal");
+    this.container.classList.add("modal", "hidden"); // Убедимся, что модальное окно скрыто
+
     this.onClose = null; // Callback для закрытия
   }
 
@@ -40,7 +42,7 @@ export default class ModalView {
 
   close() {
     this.container.classList.remove("show");
-    this.container.classList.add("hide");
+    this.container.classList.add("hidden", "hide");
 
     this.container.addEventListener(
       "animationend",
