@@ -22,6 +22,7 @@ export default class ModalView {
               fileData.uploadTime
             ).toLocaleString()}</p>
           </div>
+          <button id="download-data-btn">Download Data</button>
         </div>
       `;
 
@@ -30,14 +31,28 @@ export default class ModalView {
     this.container.classList.remove("hidden", "hide");
     this.container.classList.add("show");
 
-    this._attachEvents();
+    this._attachEvents(fileData);
   }
 
-  _attachEvents() {
+  _attachEvents(fileData) {
     const closeButton = this.container.querySelector("#close-modal");
     closeButton.addEventListener("click", () => {
       if (this.onClose) this.onClose();
     });
+
+    const downloadButton = this.container.querySelector("#download-data-btn");
+    downloadButton.addEventListener("click", () => this._downloadData(fileData));
+  }
+
+  _downloadData(fileData) {
+    const fileContent = JSON.stringify(fileData, null, 2); // Форматируем JSON с отступами
+    const blob = new Blob([fileContent], { type: "application/json" }); // Создаем Blob
+    const url = URL.createObjectURL(blob); // Создаем ссылку на Blob
+    const a = document.createElement("a"); // Создаем <a> элемент
+    a.href = url;
+    a.download = `${fileData.file || "file-details"}.json`; // Имя файла
+    a.click(); // Симулируем клик по ссылке
+    URL.revokeObjectURL(url); // Удаляем объект ссылки
   }
 
   close() {
