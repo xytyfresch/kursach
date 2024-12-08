@@ -1,13 +1,12 @@
 export default class ModalView {
   constructor() {
     this.container = document.getElementById("file-details-modal");
-    this.container.classList.add("modal", "hidden"); // Убедимся, что модальное окно скрыто
+    this.container.classList.add("modal", "hidden");
 
-    this.onClose = null; // Callback для закрытия
+    this.onClose = null;
   }
 
   render(fileData) {
-    // Генерация структуры модального окна
     this.container.innerHTML = `
         <div class="modal-content">
           <span class="close-btn" id="close-modal">&times;</span>
@@ -26,7 +25,6 @@ export default class ModalView {
         </div>
       `;
 
-    // Применяем класс modal
     this.container.classList.add("modal");
     this.container.classList.remove("hidden", "hide");
     this.container.classList.add("show");
@@ -41,18 +39,20 @@ export default class ModalView {
     });
 
     const downloadButton = this.container.querySelector("#download-data-btn");
-    downloadButton.addEventListener("click", () => this._downloadData(fileData));
+    downloadButton.addEventListener("click", () =>
+      this._downloadData(fileData)
+    );
   }
 
   _downloadData(fileData) {
-    const fileContent = JSON.stringify(fileData, null, 2); // Форматируем JSON с отступами
-    const blob = new Blob([fileContent], { type: "application/json" }); // Создаем Blob
-    const url = URL.createObjectURL(blob); // Создаем ссылку на Blob
-    const a = document.createElement("a"); // Создаем <a> элемент
+    const fileContent = JSON.stringify(fileData, null, 2);
+    const blob = new Blob([fileContent], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
     a.href = url;
-    a.download = `${fileData.file || "file-details"}.json`; // Имя файла
-    a.click(); // Симулируем клик по ссылке
-    URL.revokeObjectURL(url); // Удаляем объект ссылки
+    a.download = `${fileData.file || "file-details"}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   close() {

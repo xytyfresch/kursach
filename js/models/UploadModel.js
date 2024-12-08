@@ -12,7 +12,7 @@ export default class UploadModel {
       if (!response.ok) {
         throw new Error(`Failed to upload file: ${response.status}`);
       }
-      return await response.json(); // Возвращаем добавленный файл
+      return await response.json();
     } catch (error) {
       console.error("Error uploading file:", error);
       return null;

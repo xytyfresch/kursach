@@ -1,7 +1,7 @@
 export default class FiltersView {
   constructor() {
     this.container = document.getElementById("filters-container");
-    this.onFilterSubmit = null; // Callback для обработки фильтрации
+    this.onFilterSubmit = null;
   }
 
   render() {
@@ -40,7 +40,8 @@ export default class FiltersView {
 
       if (this.onFilterSubmit) {
         const minCoverage =
-          parseInt(this.container.querySelector("#min-coverage").value, 10) || 0;
+          parseInt(this.container.querySelector("#min-coverage").value, 10) ||
+          0;
         const startDate = this.container.querySelector("#start-date").value;
         const endDate = this.container.querySelector("#end-date").value;
 

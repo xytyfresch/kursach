@@ -25,7 +25,7 @@ export default class UploadView {
         reader.onload = () => {
           try {
             const parsedData = JSON.parse(reader.result);
-            handler(parsedData); // Передаем данные в Presenter
+            handler(parsedData);
           } catch (error) {
             console.error("Invalid JSON file:", error);
           }

@@ -4,7 +4,6 @@ export default class CoverageDetailsView {
   }
 
   render(data, onRowClick) {
-    // Генерация всей структуры таблицы
     this.container.innerHTML = `
       <h2>Coverage Details</h2>
       <table>
@@ -23,7 +22,6 @@ export default class CoverageDetailsView {
 
     const tableBody = this.container.querySelector("#coverage-data");
 
-    // Наполнение строки данными
     data.forEach((item) => {
       const row = document.createElement("tr");
       row.innerHTML = `
@@ -33,7 +31,7 @@ export default class CoverageDetailsView {
           <td>${item.branches}%</td>
           <td>${item.statements}%</td>
         `;
-      row.addEventListener("click", () => onRowClick(item)); // Обработка клика по строке
+      row.addEventListener("click", () => onRowClick(item));
       tableBody.appendChild(row);
     });
   }

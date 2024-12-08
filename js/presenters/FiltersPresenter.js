@@ -2,8 +2,8 @@ export default class FiltersPresenter {
   constructor(model, view, onFilterChangeCallback, coverageData) {
     this.model = model;
     this.view = view;
-    this.onFilterChange = onFilterChangeCallback; // Callback для обновления таблицы
-    this.coverageData = coverageData; // Данные для фильтрации
+    this.onFilterChange = onFilterChangeCallback;
+    this.coverageData = coverageData;
   }
 
   initialize() {
